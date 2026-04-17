@@ -1,0 +1,115 @@
+{% extends "basic.html" %}
+
+{% load custom_filters %}
+
+{% block body %}
+
+<section class="py-5 bg-light border-bottom">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="fw-bold">Prediction Result</h1>
+            <p class="text-muted mb-0">
+                The model returns its most likely predictions based on the selected symptoms.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4 p-md-5 text-center">
+
+                        {% if predicteddisease == "none" %}
+                            <h3 class="text-danger fw-bold">No symptoms selected</h3>
+                            <p class="text-muted mt-3 mb-0">
+                                Please go back and choose at least one symptom.
+                            </p>
+                        {% else %}
+                            <p class="text-uppercase small text-muted fw-semibold mb-2">Top Prediction</p>
+                            <h2 class="fw-bold text-primary mb-3">{{ predicteddisease }}</h2>
+
+                            <div class="mb-4">
+                                <p class="mb-1 text-muted">Confidence Score</p>
+                                <h3 class="fw-bold text-success mb-2">{{ confidencescore }}%</h3>
+
+                                {% if confidencescore|add:"0" < 50 %}
+                                    <p class="text-muted mb-0">Low confidence prediction. Adding more relevant symptoms may improve the result.</p>
+                                {% elif confidencescore|add:"0" < 80 %}
+                                    <p class="text-muted mb-0">Moderate confidence prediction.</p>
+                                {% else %}
+                                    <p class="text-muted mb-0">High confidence prediction among the known classes.</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="alert alert-light border rounded-4 text-start mb-0">
+                                <strong>Important:</strong> This score represents model confidence, not confirmed medical diagnosis.
+                            </div>
+                        {% endif %}
+
+                        <div class="d-flex justify-content-center gap-2 mt-4">
+                            <a href="{% url 'predict' %}" class="btn btn-primary px-4">Try Again</a>
+                            <a href="{% url 'home' %}" class="btn btn-outline-secondary px-4">Home</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+                    <div class="card-body p-4">
+                        <h4 class="fw-bold mb-3">Top 3 Predictions</h4>
+
+                        {% if top_predictions %}
+                            <div class="list-group list-group-flush">
+                                {% for disease, score in top_predictions %}
+                                    <div class="list-group-item px-0 py-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <div class="fw-semibold">{{ disease }}</div>
+                                            </div>
+                                            <span class="badge text-bg-primary rounded-pill">{{ score }}%</span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <p class="text-muted mb-0">No prediction results available.</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        <h4 class="fw-bold mb-3">Selected Symptoms</h4>
+
+                        {% if selectedsymptoms %}
+                            <div class="d-flex flex-wrap gap-2">
+                                {% for s in selectedsymptoms %}
+                                    <span class="badge rounded-pill text-bg-light border text-dark px-3 py-2">
+                                        {{ s|prettify_symptom }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <p class="text-muted mb-0">No symptoms selected.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+            <p class="small text-muted mb-0">
+                The prediction is based on a machine learning classification model trained on symptom-disease associations.
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
