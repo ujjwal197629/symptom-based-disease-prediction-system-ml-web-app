@@ -1,0 +1,164 @@
+{% extends "basic.html" %}
+
+{% block body %}
+
+<!-- HERO -->
+<section class="bg-light border-bottom py-5">
+    <div class="container py-4">
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-7">
+                <span class="badge bg-primary-subtle text-primary mb-3 px-3 py-2">
+                    Machine Learning Demo
+                </span>
+
+                <h1 class="display-5 fw-bold mb-3">
+                    Symptom-based Disease Prediction
+                </h1>
+
+                <p class="lead text-secondary mb-4">
+                    This application predicts possible diseases based on user-provided symptoms using
+                    machine learning techniques. It is designed as a focused demonstration of a
+                    data-driven prediction system.
+                </p>
+
+                <div class="d-flex gap-3">
+                    <a href="{% url 'predict' %}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-activity me-2"></i>Start Prediction
+                    </a>
+                </div>
+
+                <p class="mt-3 small text-muted">
+                    * This is a demo system and does not replace professional medical advice.
+                </p>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4 text-center">
+
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <i class="bi bi-list-check fs-1 text-primary"></i>
+                                <p class="small mt-2 mb-0">Input</p>
+                            </div>
+                            <div class="col-4">
+                                <i class="bi bi-cpu fs-1 text-success"></i>
+                                <p class="small mt-2 mb-0">Process</p>
+                            </div>
+                            <div class="col-4">
+                                <i class="bi bi-clipboard2-pulse fs-1 text-danger"></i>
+                                <p class="small mt-2 mb-0">Result</p>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <p class="text-secondary mb-0">
+                            Clean and focused prediction pipeline demonstration.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="py-5">
+    <div class="container py-4">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">How It Works</h2>
+            <p class="text-secondary">Simple 3-step workflow</p>
+        </div>
+
+        <div class="row g-4 text-center">
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <i class="bi bi-list-ul fs-1 text-primary"></i>
+                        <h5 class="mt-3 fw-bold">Enter Symptoms</h5>
+                        <p class="text-secondary mb-0">
+                            Provide symptoms through a simple input form.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <i class="bi bi-gear fs-1 text-success"></i>
+                        <h5 class="mt-3 fw-bold">Model Processing</h5>
+                        <p class="text-secondary mb-0">
+                            A trained machine learning model processes the input.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <i class="bi bi-graph-up fs-1 text-danger"></i>
+                        <h5 class="mt-3 fw-bold">Get Prediction</h5>
+                        <p class="text-secondary mb-0">
+                            The system outputs the predicted disease.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="bg-light py-5">
+    <div class="container py-4">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Key Features</h2>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="p-4 bg-white shadow-sm rounded-4 h-100">
+                    <i class="bi bi-lightning-charge fs-2 text-primary"></i>
+                    <h5 class="mt-3 fw-bold">Fast</h5>
+                    <p class="text-secondary mb-0">
+                        Instant predictions from symptom input.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 bg-white shadow-sm rounded-4 h-100">
+                    <i class="bi bi-cpu fs-2 text-success"></i>
+                    <h5 class="mt-3 fw-bold">ML-based</h5>
+                    <p class="text-secondary mb-0">
+                        Powered by machine learning classification.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 bg-white shadow-sm rounded-4 h-100">
+                    <i class="bi bi-shield-check fs-2 text-danger"></i>
+                    <h5 class="mt-3 fw-bold">Focused</h5>
+                    <p class="text-secondary mb-0">
+                        Clean interface centered on prediction only.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
